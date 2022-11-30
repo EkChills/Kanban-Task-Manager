@@ -7,10 +7,12 @@ import elipse from '../../assets/icon-vertical-ellipsis.svg'
 const ViewTaskDetails = ({ info }) => {
   const { allBoards, changeBoard, tasksIndex, isChecked, showSelected, setShowSelected, closeViewTasksModal } = React.useContext(TasksContext);
   const boardTitle = allBoards.map(((item) => item.name))
+  const { columns } = allBoards[tasksIndex]
+
 
   console.log(info);
 
-  
+
 
   const completed = info?.subtasks?.reduce((total, item) => {
     if (item.isCompleted === true) {
@@ -35,15 +37,22 @@ const ViewTaskDetails = ({ info }) => {
             <div className='flex flex-col space-y-3'>
               {info?.subtasks?.map((task) => {
                 return (
-                  <div className='flex items-center space-x-4 '>
+                  <div className='flex items-center space-x-4 form-cont p-4 rounded-lg'>
                     <input type="checkbox" className='checkbox checkbox-secondary' checked={task.isCompleted} id='subtasks' />
-                    <label htmlFor="subtasks" className={`text-grey max-w-[416px] ${!isChecked && task.isCompleted && 'text-grey crossed'} ${!isChecked && !task.isCompleted && 'text-darkBlack'} ${isChecked && task.isCompleted && 'text-grey crossed' } ${isChecked && !task.isCompleted && 'text-pureWhite'} `}>{task.title}</label>
+                    <label htmlFor="subtasks" className={`text-grey max-w-[416px] ${!isChecked && task.isCompleted && 'text-grey crossed'} ${!isChecked && !task.isCompleted && 'text-darkBlack'} ${isChecked && task.isCompleted && 'text-grey crossed'} ${isChecked && !task.isCompleted && 'text-pureWhite'} `}>{task.title}</label>
                   </div>
                 )
               })}
             </div>
           </div>
-          <div></div>
+          <div className='flex flex-col space-y-3'>
+            <label htmlFor="select">Current Status</label>
+            <select className={`select ${!isChecked ? 'select-secondary' : 'select-primary' } w-full`}>
+              {columns.map((item) => {
+                return <option>{item.name}</option>
+              })}
+            </select>
+          </div>
         </div>
       </div>
 
@@ -57,6 +66,9 @@ svg {
   fill: #828FA3;
 }
  
+  .form-cont {
+    background: var(--main-bcg);
+  }
   
   .main-modal {
     position: fixed;
