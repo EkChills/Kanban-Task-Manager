@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.light-mode {
+  --side-bar-bcg: #ffffff;
+  --main-bcg:   #F4F7FD;
+  --sidebar-hover-clr: #635FC7;
+  --board-hover-bcg: hsl(220, 69%, 95%);
+  --nav-bcg: #ffffff;
+  --tasks-text: #000000;
+  --tasks-bcg: #ffffff;
+  --new-col-bcg: #E9EFFA;
+}
+
+.dark-mode {
+  --side-bar-bcg: #2B2C37;
+  --main-bcg:  #20212C;
+  --sidebar-hover-clr: #635FC7;
+  --board-hover-bcg:#ffffff;
+  --nav-bcg: #2B2C37;
+  --tasks-text: #ffffff;
+  --tasks-bcg: #2B2C37;
+  --new-col-bcg:  linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);;
+}
+
