@@ -69,7 +69,7 @@ svg {
     place-items: center;
     transition: all .1s ease-in-out;
     visibility:hidden;
-    z-index: -1;
+    z-index: 50;
 
   }
 
