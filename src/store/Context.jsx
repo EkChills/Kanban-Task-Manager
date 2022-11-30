@@ -46,6 +46,11 @@ const AppProvider = ({children}) => {
     setShowSelected(false)
   }
 
+  
+  const handleCheck =(e) => {
+    setIsChecked(e.target.checked)
+  }
+
 
   useEffect(() => {
     toggleTheme()
@@ -55,7 +60,8 @@ const AppProvider = ({children}) => {
 
   return (
     <TasksContext.Provider value={{allBoards, tasksIndex, sidebarOpen,isChecked, setIsChecked,  setSidebarOpen,
-    OpenSidebar, closeSidebar, changeBoard, showSelected, setShowSelected, openViewTasksModal,closeViewTasksModal}}>
+    OpenSidebar, closeSidebar, changeBoard, showSelected, setShowSelected, openViewTasksModal,closeViewTasksModal,
+    handleCheck}}>
       {children}
     </TasksContext.Provider>
   )

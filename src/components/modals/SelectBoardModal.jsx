@@ -7,7 +7,7 @@ import darkIcon from '../../assets/icon-dark-theme.svg'
 
 
 const SelectBoardModal = ({isModalOpen, open, close}) => {
-  const { allBoards, changeBoard, tasksIndex, isChecked } = React.useContext(TasksContext);
+  const { allBoards, changeBoard, tasksIndex, isChecked, handleCheck } = React.useContext(TasksContext);
   const boardTitle = allBoards.map(((item) => item.name))
 
   return (
@@ -34,7 +34,7 @@ const SelectBoardModal = ({isModalOpen, open, close}) => {
 
         <div className={`${!isChecked ? 'bg-[#F4F7FD]' : 'bg-[#20212C]'} w-full py-4  rounded-xl mt-4 flex items-center justify-around mb-4`}>
           <img src={lightIcon} alt="" />
-          <input type="checkbox" className="toggle toggle-secondary"  />
+          <input type="checkbox" className="toggle toggle-secondary" onChange={handleCheck} />
 
           
           <img src={darkIcon} alt="" />

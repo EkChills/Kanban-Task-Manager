@@ -10,13 +10,10 @@ import hideSidebar from '../assets/icon-hide-sidebar.svg'
 
 const Sidebar = () => {
   const { allBoards, sidebarOpen, setSidebarOpen, OpenSidebar, closeSidebar, changeBoard, tasksIndex,
-  toggleTheme,isChecked, setIsChecked } = useContext(TasksContext);
+  toggleTheme,isChecked, setIsChecked, handleCheck } = useContext(TasksContext);
   const boardTitle = allBoards.map(((item) => item.name))
 
 
-  const handleCheck =(e) => {
-    setIsChecked(e.target.checked)
-  }
 
   console.log(isChecked);
 
