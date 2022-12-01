@@ -13,6 +13,8 @@ const AppProvider = ({children}) => {
   const [sidebarOpen, setSidebarOpen] = React.useState(false)
   const [isChecked, setIsChecked] = useState(false)
   const [showSelected, setShowSelected] = useState(false)
+  const [showAddBoardModal, setShowAddBoardModal] = useState(false)
+  const [showAddNewTaskModal, setShowAddNewTaskModal] = useState(false)
 
 
 
@@ -25,8 +27,24 @@ const AppProvider = ({children}) => {
     setSidebarOpen(false)
   }
 
+  const openShowAddBoardModal = () => {
+    setShowAddBoardModal(true)
+  }
+
+  const closeShowAddBoardModal = () => {
+    setShowAddBoardModal(false)
+  }
+
   const changeBoard = (boardIndex) => {
     setTasksIndex(boardIndex)
+  }
+
+  const openAddNewTaskModal = () => {
+    setShowAddNewTaskModal(true)
+  }
+
+  const closeAddNewTaskModal = () => {
+    setShowAddNewTaskModal(true)
   }
 
   const toggleTheme = () => {
@@ -61,7 +79,8 @@ const AppProvider = ({children}) => {
   return (
     <TasksContext.Provider value={{allBoards, tasksIndex, sidebarOpen,isChecked, setIsChecked,  setSidebarOpen,
     OpenSidebar, closeSidebar, changeBoard, showSelected, setShowSelected, openViewTasksModal,closeViewTasksModal,
-    handleCheck}}>
+    handleCheck, showAddBoardModal, setShowAddBoardModal, openShowAddBoardModal, closeShowAddBoardModal,
+    openAddNewTaskModal, closeAddNewTaskModal, showAddNewTaskModal, setShowAddNewTaskModal}}>
       {children}
     </TasksContext.Provider>
   )

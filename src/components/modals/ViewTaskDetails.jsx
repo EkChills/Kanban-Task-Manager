@@ -34,7 +34,7 @@ const ViewTaskDetails = ({ info }) => {
           </div>
           <div className='flex flex-col'>
             <span className='text-[13px] text-grey mb-4 font-bold'>Subtasks ({completed} of {info.subtasks?.length})</span>
-            <div className='flex flex-col space-y-3'>
+            <div className='flex flex-col space-y-2'>
               {info?.subtasks?.map((task) => {
                 return (
                   <div className='flex items-center space-x-4 form-cont p-4 rounded-lg'>
@@ -82,7 +82,7 @@ svg {
     transition: all .1s ease-in-out;
     visibility:hidden;
     z-index: 50;
-
+    transition: all .5s ease-in-out;
   }
 
   .show-modal {
