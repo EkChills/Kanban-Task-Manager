@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+::root {
+  --side-bar-bcg: #ffffff;
+  --main-bcg:   #F4F7FD;
+  --sidebar-hover-clr: #635FC7;
+  --board-hover-bcg: hsl(220, 69%, 95%);
+  --nav-bcg: #ffffff;
+  --tasks-text: #000000;
+  --tasks-bcg: #ffffff;
+  --new-col-bcg: #E9EFFA;
+}
+
 .light-mode {
   --side-bar-bcg: #ffffff;
   --main-bcg:   #F4F7FD;
@@ -11,6 +22,7 @@
   --tasks-text: #000000;
   --tasks-bcg: #ffffff;
   --new-col-bcg: #E9EFFA;
+  --stat-color: #828FA3;
 }
 
 .dark-mode {
@@ -22,5 +34,10 @@
   --tasks-text: #ffffff;
   --tasks-bcg: #2B2C37;
   --new-col-bcg:  linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);;
+  --stat-color: #ffffff;
 }
 
+
+body {
+  transition: all .5s linear;
+}

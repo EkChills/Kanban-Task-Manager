@@ -39,17 +39,17 @@ const ViewTaskDetails = ({ info }) => {
                 return (
                   <div className='flex items-center space-x-4 form-cont p-4 rounded-lg'>
                     <input type="checkbox" className='checkbox checkbox-secondary' checked={task.isCompleted} id='subtasks' />
-                    <label htmlFor="subtasks" className={`text-grey max-w-[416px] ${!isChecked && task.isCompleted && 'text-grey crossed'} ${!isChecked && !task.isCompleted && 'text-darkBlack'} ${isChecked && task.isCompleted && 'text-grey crossed'} ${isChecked && !task.isCompleted && 'text-pureWhite'} `}>{task.title}</label>
+                    <label htmlFor="subtasks" className={`text-grey font-bold text-[13px] md:text-[15px] max-w-[416px] ${!isChecked && task.isCompleted && 'text-grey crossed'} ${!isChecked && !task.isCompleted && 'text-darkBlack'} ${isChecked && task.isCompleted && 'text-grey crossed'} ${isChecked && !task.isCompleted && 'text-pureWhite'} `}>{task.title}</label>
                   </div>
                 )
               })}
             </div>
           </div>
           <div className='flex flex-col space-y-3'>
-            <label htmlFor="select">Current Status</label>
+            <label htmlFor="select" className='text-[13px] md:text-[15px] font-bold curr-stat '>Current Status</label>
             <select className={`select ${!isChecked ? 'select-secondary' : 'select-primary' } w-full`}>
               {columns.map((item) => {
-                return <option>{item.name}</option>
+                return <option selected={info.status === item.name} className="" value={item.name}>{item.name}</option>
               })}
             </select>
           </div>
@@ -112,6 +112,10 @@ svg {
     width: 100%;
     height: 1px;
     background-color: #828FA3;
+  }
+
+  .curr-stat {
+    color:var(--stat-color)
   }
 
   
