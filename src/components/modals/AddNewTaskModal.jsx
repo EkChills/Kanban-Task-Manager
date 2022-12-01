@@ -9,7 +9,7 @@ import darkIcon from '../../assets/icon-dark-theme.svg'
 
 const AddNewTaskModal = ({ isModalOpen, open, close }) => {
   const { allBoards, changeBoard, tasksIndex, isChecked, showAddNewTaskModal, handleCheck,
-  AddedTasks, handleAddedTaskChange,  closeAddNewTaskModal} = React.useContext(TasksContext);
+  AddedTasks,setAddedTasks, handleAddedTaskChange,  closeAddNewTaskModal} = React.useContext(TasksContext);
   const boardTitle = allBoards.map(((item) => item.name))
   const { columns } = allBoards[tasksIndex]
 
@@ -37,6 +37,12 @@ const AddNewTaskModal = ({ isModalOpen, open, close }) => {
     e.preventDefault();
     AddTask()
     closeAddNewTaskModal()
+    setAddedTasks({
+      title: '',
+      description: '',
+      subtasks: '',
+      status: ''
+    })
   }
 
 

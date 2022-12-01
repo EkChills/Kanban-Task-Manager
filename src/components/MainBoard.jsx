@@ -9,7 +9,7 @@ import AddNewTaskModal from './modals/AddNewTaskModal'
 
 
 const MainBoard = () => {
-  const { allBoards, tasksIndex, sidebarOpen, closeViewTaskModal, OpenSidebar,openViewTasksModal } = useContext(TasksContext)
+  const { allBoards, tasksIndex, sidebarOpen, OpenSidebar,openViewTasksModal } = useContext(TasksContext)
   const [infoData, setInfoData] = useState({})
   const { columns } = allBoards[tasksIndex]
 
@@ -27,7 +27,6 @@ const MainBoard = () => {
    }, {})
    setInfoData(found)
    openViewTasksModal()
-   console.log(found);
   }
 
   
@@ -44,7 +43,7 @@ const MainBoard = () => {
             const { name, tasks } = column
             return (
               <div key={index} className="flex flex-col space-y-4 mt-[6rem]">
-                <div className="flex space-x-3 items-center">
+                <div className="flex space-x-3 items-center min-w-[15rem]">
                   <span className={`w-4 rounded-full ${name === 'Todo' ? 'bg-[#49C4E5]' : name === 'Doing' ? 'bg-[#8471F2]' : 'bg-[#67E2AE]'} p-[.55rem]`}></span>
                   <p className='text-grey text-[15px] font-semibold uppercase tracking-[.15rem]'>{name} ({tasks.length})</p>
                 </div>
@@ -60,7 +59,7 @@ const MainBoard = () => {
                   return (
                     <div onClick={() => findTask(title)} key={index} className='flex cursor-pointer flex-col min-w-[16rem]  task-board shadow-lg rounded-lg py-6 px-3 mr-6 w-72'>
                       <div className='max-w-[16rem] space-y-2'>
-                        <h4 className='text-[16px]  font-bold'>{title}</h4>
+                        <h4 className='text-[16px]  font-bold '>{title}</h4>
                         <p className='text-[13px]  text-grey font-semibold'>{completed} of {subtasks.length} subtasks</p>
                       </div>
 

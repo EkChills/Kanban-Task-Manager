@@ -5,12 +5,10 @@ import elipse from '../../assets/icon-vertical-ellipsis.svg'
 
 
 const ViewTaskDetails = ({ info }) => {
-  const { allBoards, changeBoard, tasksIndex, isChecked, showSelected, setShowSelected, closeViewTasksModal } = React.useContext(TasksContext);
-  const boardTitle = allBoards.map(((item) => item.name))
+  const { allBoards,  tasksIndex, isChecked, showSelected,  closeViewTasksModal,setShowSelected } = React.useContext(TasksContext);
   const { columns } = allBoards[tasksIndex]
 
 
-  console.log(info);
 
 
 
@@ -23,7 +21,7 @@ const ViewTaskDetails = ({ info }) => {
 
   return (
     <Wrapper>
-      <div className={`${showSelected ? 'main-modal show-modal' : 'main-modal'} px-7`} onClick={closeViewTasksModal} >
+      <div className={`${showSelected ? 'main-modal show-modal' : 'main-modal'} px-7`} onClick={() => setShowSelected(false)} >
         <div className='flex flex-col space-y-6 modal-content rounded-md p-6' onClick={(e) => e.stopPropagation()}>
           <div className='flex items-center space-x-8 justify-between'>
             <h2 className={`text-[18px] font-bold max-w-[387px] ${isChecked ? 'text-pureWhite' : 'text-darkBlack'}`}>{info.title}</h2>
@@ -35,9 +33,9 @@ const ViewTaskDetails = ({ info }) => {
           <div className='flex flex-col'>
             <span className='text-[13px] text-grey mb-4 font-bold'>Subtasks ({completed} of {info.subtasks?.length})</span>
             <div className='flex flex-col space-y-2'>
-              {info?.subtasks?.map((task) => {
+              {info?.subtasks?.map((task, index) => {
                 return (
-                  <div className='flex items-center space-x-4 form-cont p-4 rounded-lg'>
+                  <div key={index} className='flex items-center space-x-4 form-cont p-4 rounded-lg'>
                     <input type="checkbox" className='checkbox checkbox-secondary' checked={task.isCompleted} id='subtasks' />
                     <label htmlFor="subtasks" className={`text-grey font-bold text-[13px] md:text-[15px] max-w-[416px] ${!isChecked && task.isCompleted && 'text-grey crossed'} ${!isChecked && !task.isCompleted && 'text-darkBlack'} ${isChecked && task.isCompleted && 'text-grey crossed'} ${isChecked && !task.isCompleted && 'text-pureWhite'} `}>{task.title}</label>
                   </div>
@@ -48,8 +46,8 @@ const ViewTaskDetails = ({ info }) => {
           <div className='flex flex-col space-y-3'>
             <label htmlFor="select" className='text-[13px] md:text-[15px] font-bold curr-stat '>Current Status</label>
             <select className={`select ${!isChecked ? 'select-secondary' : 'select-primary' } w-full`}>
-              {columns.map((item) => {
-                return <option selected={info.status === item.name} className="" value={item.name}>{item.name}</option>
+              {columns.map((item, index) => {
+                return <option key={index} selected={info.status === item.name} className="" value={item.name}>{item.name}</option>
               })}
             </select>
           </div>
