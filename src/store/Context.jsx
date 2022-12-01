@@ -14,7 +14,18 @@ const AppProvider = ({children}) => {
   const [isChecked, setIsChecked] = useState(false)
   const [showSelected, setShowSelected] = useState(false)
   const [showAddBoardModal, setShowAddBoardModal] = useState(false)
-  const [showAddNewTaskModal, setShowAddNewTaskModal] = useState(false)
+  const [showAddNewTaskModal, setShowAddNewTaskModal] = useState(true)
+  const [AddedTasks, setAddedTasks] = useState({
+    title: '',
+    description: '',
+    subtasks: '',
+    status: ''
+  })
+
+  const handleAddedTaskChange = (e) => {
+    const {name, value} = e.target
+    setAddedTasks(prev => ({...prev, [name]: value }))
+  }
 
 
 
@@ -80,7 +91,8 @@ const AppProvider = ({children}) => {
     <TasksContext.Provider value={{allBoards, tasksIndex, sidebarOpen,isChecked, setIsChecked,  setSidebarOpen,
     OpenSidebar, closeSidebar, changeBoard, showSelected, setShowSelected, openViewTasksModal,closeViewTasksModal,
     handleCheck, showAddBoardModal, setShowAddBoardModal, openShowAddBoardModal, closeShowAddBoardModal,
-    openAddNewTaskModal, closeAddNewTaskModal, showAddNewTaskModal, setShowAddNewTaskModal}}>
+    openAddNewTaskModal, closeAddNewTaskModal, showAddNewTaskModal, setShowAddNewTaskModal,
+    AddedTasks, setAddedTasks, handleAddedTaskChange}}>
       {children}
     </TasksContext.Provider>
   )

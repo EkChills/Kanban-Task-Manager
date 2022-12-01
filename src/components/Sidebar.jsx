@@ -19,7 +19,7 @@ const Sidebar = () => {
 
   return (
     <Wrapper>
-      <aside className={` ${sidebarOpen ? 'side-bar side-bar-open' : 'side-bar'} ${!isChecked ? 'border-[#E4EBFA]' : 'border-[#3E3F4E]'} `}>
+      <aside className={` ${sidebarOpen ? 'side-bar side-bar-open' : 'side-bar'} ${!isChecked ? 'border-[#E4EBFA]' : 'border-[#3E3F4E]'} border-r-2 `}>
         <h3 className='text-grey text-[15px] mb-6 ml-[1.75rem] font-bold '>ALL BOARDS ({boardTitle.length})</h3>
         {
           boardTitle.map((item, index) => {

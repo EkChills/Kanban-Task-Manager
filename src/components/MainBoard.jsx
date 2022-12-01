@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import AddNew from './buttons/AddNew'
 import iconShowSidebar from '../assets/icon-show-sidebar.svg'
 import ViewTaskDetails from './modals/ViewTaskDetails'
+import AddNewTaskModal from './modals/AddNewTaskModal'
 
 
 const MainBoard = () => {
@@ -86,6 +87,7 @@ const MainBoard = () => {
 
 
       {ReactDOM.createPortal(<ViewTaskDetails info={infoData} />, portalCont)}
+      {/* {ReactDOM.createPortal(<AddNewTaskModal info={infoData} />, portalCont)} */}
 
     </Wrapper>
   )

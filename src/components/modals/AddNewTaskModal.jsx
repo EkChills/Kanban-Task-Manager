@@ -1,48 +1,51 @@
 import React from 'react'
 import styled from 'styled-components'
 import { TasksContext } from '../../store/Context'
+import add from '../../assets/icon-add-task-mobile.svg'
 import boardIcon from '../../assets/icon-board.svg'
 import lightIcon from '../../assets/icon-light-theme.svg'
 import darkIcon from '../../assets/icon-dark-theme.svg'
 
 
-const AddNewTaskModal = ({isModalOpen, open, close}) => {
-  const { allBoards, changeBoard, tasksIndex, isChecked, handleCheck } = React.useContext(TasksContext);
+const AddNewTaskModal = ({ isModalOpen, open, close }) => {
+  const { allBoards, changeBoard, tasksIndex, isChecked, showAddNewTaskModal, handleCheck } = React.useContext(TasksContext);
   const boardTitle = allBoards.map(((item) => item.name))
 
   return (
     <Wrapper>
-      <div className={`${isModalOpen ? 'main-modal show-modal' : 'main-modal'  }`} onClick={close} >
-      <div className='flex flex-col modal-content rounded-md w-[17.5rem] pr-3 pl-3  mt-6' onClick={(e) => e.stopPropagation()}>
-        <h3 className='text-grey text-[15px] mb-3 mt-3 ml-[1.75rem] font-bold '>ALL BOARDS ({boardTitle.length})</h3>
-        {
-          boardTitle.map((item, index) => {
-            return <div key={index} onClick={() => changeBoard(index)} className={`w-full board text-grey px-[1.17rem] ${index === tasksIndex ? 'active-bcg' : null} rounded-r-full flex items-center space-x-4 py-4`}>
-              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M0 2.889A2.889 2.889 0 0 1 2.889 0H13.11A2.889 2.889 0 0 1 16 2.889V13.11A2.888 2.888 0 0 1 13.111 16H2.89A2.889 2.889 0 0 1 0 13.111V2.89Zm1.333 5.555v4.667c0 .859.697 1.556 1.556 1.556h6.889V8.444H1.333Zm8.445-1.333V1.333h-6.89A1.556 1.556 0 0 0 1.334 2.89V7.11h8.445Zm4.889-1.333H11.11v4.444h3.556V5.778Zm0 5.778H11.11v3.11h2a1.556 1.556 0 0 0 1.556-1.555v-1.555Zm0-7.112V2.89a1.555 1.555 0 0 0-1.556-1.556h-2v3.111h3.556Z"/></svg>
-              <span className='text-[15px] font-bold '>{item}</span>
+      <div className={`${showAddNewTaskModal ? 'main-modal show-modal' : 'main-modal'}`} onClick={close} >
+        <form className='flex flex-col form-control modal-content min-w-[300px] w-[85%] max-w-[500px] p-6 rounded-lg space-y-5'>
+          <h3 className='text-[18px] font-bold'>Add New Task</h3>
+          <div className='flex flex-col space-y-2'>
+            <label htmlFor="title" className='curr-stat text-[12px] font-bold'>Title</label>
+            <input id='title' type="text" placeholder="e.g Take cofee break" className="input placeholder:text-grey placeholder:font-semibold text-[13px] input-bordered w-full" />
+          </div>
+          <div className='flex flex-col space-y-2'>
+            <label htmlFor="description" className='curr-stat text-[12px] font-bold'>Description</label>
+            <textarea className="textarea textarea-bordered text-[13px]" placeholder="e.g. It’s always good to take a break. This 15 minute break will recharge the batteries a little."></textarea>
+          </div>
+          <div className='flex flex-col space-y-2'>
+            <label htmlFor="subtasks" className='curr-stat text-[12px] font-bold'>Subtasks</label>
+            <div className='flex items-center space-x-2'>
+              <input id='subtasks' type="text" placeholder="e.g Take cofee break" className="input placeholder:text-grey placeholder:font-semibold text-[13px] input-bordered w-full" />
+              <svg className='remove' width="15" height="15" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z" /><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z" /></g></svg>
             </div>
-          })
-        }
-
-        <div className='w-full board text-darkPurple px-[1.17rem] rounded-r-full flex items-center space-x-4 py-4'>
-        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M0 2.889A2.889 2.889 0 0 1 2.889 0H13.11A2.889 2.889 0 0 1 16 2.889V13.11A2.888 2.888 0 0 1 13.111 16H2.89A2.889 2.889 0 0 1 0 13.111V2.89Zm1.333 5.555v4.667c0 .859.697 1.556 1.556 1.556h6.889V8.444H1.333Zm8.445-1.333V1.333h-6.89A1.556 1.556 0 0 0 1.334 2.89V7.11h8.445Zm4.889-1.333H11.11v4.444h3.556V5.778Zm0 5.778H11.11v3.11h2a1.556 1.556 0 0 0 1.556-1.555v-1.555Zm0-7.112V2.89a1.555 1.555 0 0 0-1.556-1.556h-2v3.111h3.556Z"/></svg>
-          <span className='flex items-center space-x-2 font-bold text-[15px]'>
-            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path fill="#635FC7" d="M7.368 12V7.344H12V4.632H7.368V0H4.656v4.632H0v2.712h4.656V12z" /></svg>
-            <p>Create New Board</p>
-          </span>
-        </div>
-
-        <div className={`${!isChecked ? 'bg-[#F4F7FD]' : 'bg-[#20212C]'} w-full py-4  rounded-xl mt-4 flex items-center justify-around mb-4`}>
-          <img src={lightIcon} alt="" />
-          <input type="checkbox" className="toggle toggle-secondary" onChange={handleCheck} />
-
-          
-          <img src={darkIcon} alt="" />
-        </div>
-
+            <button className="btn rounded-full subtask-btn flex items-center space-x-2">
+              <svg className='svg-add' width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path fill="#635FC7" d="M7.368 12V7.344H12V4.632H7.368V0H4.656v4.632H0v2.712h4.656V12z" /></svg>
+              <span className='text-darkPurple text-[13px] font-bold'>Add New Subtask</span>
+            </button>
+          </div>
+          <div className='flex flex-col space-y-2'>
+            <label htmlFor="selects" className='curr-stat text-[12px] font-bold'>Title</label>
+            <select id='selects' className="select select-bordered w-full ">
+              <option disabled selected>Who shot first?</option>
+              <option>Han Solo</option>
+              <option>Greedo</option>
+            </select>
+          </div>
+        </form>
       </div>
-      </div>
-      
+
     </Wrapper>
   )
 }
@@ -52,7 +55,11 @@ const Wrapper = styled.div`
 svg {
   fill: #828FA3;
 }
- 
+
+.subtask-btn {
+  background-color: var(--subtasks-btn);
+  border: none;
+}
   
   .main-modal {
     position: fixed;
@@ -75,25 +82,24 @@ svg {
     z-index: 10;
   }
 
+  .remove {
+    fill:"#828FA3";
+    transition: all .3s ease-in-out;
+  }
+
+  .remove:hover {
+    fill: #EA5555;
+    cursor: pointer;
+  }
+
+  .curr-stat {
+    color:var(--stat-color)
+  }
+
+
   .modal-content {
     background-color: var(--nav-bcg);
   }
-
-  .board:hover {
-    background-color: var(--board-hover-bcg);
-    cursor: pointer;
-    color: var(--sidebar-hover-clr);
-  }
-
-  
- .active-bcg {
-  background-color: #635FC7;
-  color: #ffffff;
- }
-
- .active-bcg > svg {
-  fill: #ffffff;
- }
 `
 
 export default AddNewTaskModal

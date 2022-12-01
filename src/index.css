@@ -17,6 +17,7 @@
   --tasks-text: #000000;
   --tasks-bcg: #ffffff;
   --new-col-bcg: #E9EFFA;
+  --subtasks-btn: rgba(99, 95, 199, 0.1);
 }
 
 .light-mode {
@@ -29,6 +30,7 @@
   --tasks-bcg: #ffffff;
   --new-col-bcg: #E9EFFA;
   --stat-color: #828FA3;
+  --subtasks-btn: rgba(99, 95, 199, 0.1);
 }
 
 .dark-mode {
@@ -41,6 +43,7 @@
   --tasks-bcg: #2B2C37;
   --new-col-bcg:  linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);;
   --stat-color: #ffffff;
+  --subtasks-btn: #ffffff;
 }
 
 
