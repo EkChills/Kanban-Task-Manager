@@ -14,7 +14,7 @@ const AppProvider = ({children}) => {
   const [isChecked, setIsChecked] = useState(false)
   const [showSelected, setShowSelected] = useState(false)
   const [showAddBoardModal, setShowAddBoardModal] = useState(false)
-  const [showAddNewTaskModal, setShowAddNewTaskModal] = useState(true)
+  const [showAddNewTaskModal, setShowAddNewTaskModal] = useState(false)
   const [AddedTasks, setAddedTasks] = useState({
     title: '',
     description: '',
@@ -55,7 +55,7 @@ const AppProvider = ({children}) => {
   }
 
   const closeAddNewTaskModal = () => {
-    setShowAddNewTaskModal(true)
+    setShowAddNewTaskModal(false)
   }
 
   const toggleTheme = () => {

@@ -87,7 +87,7 @@ const MainBoard = () => {
 
 
       {ReactDOM.createPortal(<ViewTaskDetails info={infoData} />, portalCont)}
-      {/* {ReactDOM.createPortal(<AddNewTaskModal info={infoData} />, portalCont)} */}
+      {ReactDOM.createPortal(<AddNewTaskModal info={infoData} />, portalCont)}
 
     </Wrapper>
   )

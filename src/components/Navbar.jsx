@@ -13,7 +13,7 @@ import { TasksContext } from '../store/Context'
 const Navbar = () => {
   const [isNavModalOpen, setIsNavModalOpen] = React.useState(false)
 const portalCont = document.getElementById('portals')
-const { allBoards,isChecked, tasksIndex, sidebarOpen, OpenSidebar } = React.useContext(TasksContext)
+const { allBoards,isChecked, tasksIndex, sidebarOpen, OpenSidebar, openAddNewTaskModal } = React.useContext(TasksContext)
 
 const { name } = allBoards[tasksIndex]
 
@@ -48,7 +48,7 @@ const closeNavModal = () => {
         <div>
           <span className='hidden md:inline-block'>
             <AddNew>
-              <span className='flex items-center space-x-2'>
+              <span className='flex items-center space-x-2' onClick={openAddNewTaskModal}>
                 <img src={addTask} alt="add" />
                 <p>Add new task</p>
               </span>
@@ -56,7 +56,7 @@ const closeNavModal = () => {
             </AddNew>
           </span>
 
-          <span className='md:hidden'>
+          <span className='md:hidden' onClick={openAddNewTaskModal}>
             <AddNew>
               <img src={addTask} alt="add" />
             </AddNew>
