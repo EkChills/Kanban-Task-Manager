@@ -138,7 +138,7 @@ const EditTask = ({ foundEditedItem, foundItemIndex, foundItem }) => {
             </select>
           </div>
           <button className="btn rounded-full bg-darkPurple font-bold text-[13px]" type='submit'>
-            Create Task
+            Save Changes
           </button>
         </form>
       </div>
