@@ -15,6 +15,8 @@ const AppProvider = ({children}) => {
   const [showSelected, setShowSelected] = useState(false)
   const [showAddBoardModal, setShowAddBoardModal] = useState(false)
   const [showAddNewTaskModal, setShowAddNewTaskModal] = useState(false)
+  const [showEditTaskTray, setShowEditTaskTray] = useState(false)
+  const [showEditBoardTray, setShowEditBoardTray] = useState(false)
   const [AddedTasks, setAddedTasks] = useState({
     title: '',
     description: '',
@@ -92,7 +94,8 @@ const AppProvider = ({children}) => {
     OpenSidebar, closeSidebar, changeBoard, showSelected, setShowSelected, openViewTasksModal,closeViewTasksModal,
     handleCheck, showAddBoardModal, setShowAddBoardModal, openShowAddBoardModal, closeShowAddBoardModal,
     openAddNewTaskModal, closeAddNewTaskModal, showAddNewTaskModal, setShowAddNewTaskModal,
-    AddedTasks, setAddedTasks, handleAddedTaskChange}}>
+    AddedTasks, setAddedTasks, handleAddedTaskChange, showEditTaskTray, setShowEditTaskTray,
+    showEditBoardTray,setShowEditBoardTray}}>
       {children}
     </TasksContext.Provider>
   )

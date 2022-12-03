@@ -28,7 +28,7 @@ const closeNavModal = () => {
 }
   return (
   <MyNav>
-    <nav className={`flex justify-between px-6  mx-auto items-center border-b ${!isChecked ? 'border-[#E4EBFA]' : 'border-[#3E3F4E]'} fixed left-0 right-0`}>
+    <nav className={`flex justify-between px-6 transition-all  duration-[.4s] ease-in-out  mx-auto items-center border-b ${!isChecked ? 'border-[#E4EBFA]' : 'border-[#3E3F4E]'} fixed left-0 right-0`}>
       <div className='flex items-center space-x-5'>
         <Wrapper>
           <div className={`logo-cont pr-32 border-r-2 ${!isChecked ? 'border-[#E4EBFA]' : 'border-[#3E3F4E]'} py-6 hidden md:block`}>

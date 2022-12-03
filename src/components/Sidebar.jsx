@@ -15,7 +15,6 @@ const Sidebar = () => {
 
 
 
-  console.log(isChecked);
 
   return (
     <Wrapper>
@@ -76,6 +75,7 @@ svg {
   display: flex;
   flex-direction: column;
   visibility: hidden;
+  transition: all .4s ease-in-out;
  }
 
  .side-bar-open {  

@@ -1,15 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { TasksContext } from '../../store/Context'
 import elipse from '../../assets/icon-vertical-ellipsis.svg'
+import EditTaskTray from '../Trays/EditTaskTray'
 
 
 const ViewTaskDetails = ({ info }) => {
-  const { allBoards,  tasksIndex, isChecked, showSelected,  closeViewTasksModal,setShowSelected } = React.useContext(TasksContext);
+  const wrapped = useRef(null);
+  let firstUpdate = useRef(true)
+  const { allBoards,  tasksIndex, isChecked, setShowEditTaskTray, showEditTaskTray, showSelected,  closeViewTasksModal,setShowSelected } = React.useContext(TasksContext);
   const { columns } = allBoards[tasksIndex]
 
 
 
+
+  const openTaskTray = () => {
+    setShowEditTaskTray(true)
+  }
+
+  const closeTaskTray = () => {
+    setShowEditTaskTray(false)
+  }
+  
 
 
   const completed = info?.subtasks?.reduce((total, item) => {
@@ -19,13 +31,31 @@ const ViewTaskDetails = ({ info }) => {
     return total
   }, 0)
 
+ 
+
+  if(wrapped.current) {
+    wrapped.current.addEventListener('click', () => {
+      closeTaskTray()
+    })
+  }
+
+
+
+
+
   return (
     <Wrapper>
-      <div className={`${showSelected ? 'main-modal show-modal' : 'main-modal'} px-7`} onClick={() => setShowSelected(false)} >
-        <div className='flex flex-col space-y-6 modal-content rounded-md p-6' onClick={(e) => e.stopPropagation()}>
-          <div className='flex items-center space-x-8 justify-between'>
+      <div className={`${showSelected ? 'main-modal show-modal' : 'main-modal'} px-7`} onClick={() => {
+        setShowSelected(false)
+        closeTaskTray()
+        }} >
+        <div className='flex flex-col space-y-6 modal-content rounded-md p-6' ref={wrapped} onClick={(e) => {
+          e.stopPropagation()
+        }}>
+          <div className='flex items-center space-x-8 justify-between relative'>
             <h2 className={`text-[18px] font-bold max-w-[387px] ${isChecked ? 'text-pureWhite' : 'text-darkBlack'}`}>{info.title}</h2>
-            <img src={elipse} alt="elipse menu" />
+            <img src={elipse} alt="elipse menu " className='cursor-pointer' onClick={openTaskTray} />
+            <EditTaskTray/>
           </div>
           <div>
             <p className={`text-[15px] max-w-[426px] text-grey`}>{info.description}</p>

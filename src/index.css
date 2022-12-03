@@ -19,6 +19,7 @@
   --new-col-bcg: #E9EFFA;
   --subtasks-btn: rgba(99, 95, 199, 0.1);
   --input-border: rgba(130, 143, 163, 0.25);
+  --tray-color: #ffffff;
 }
 
 .light-mode {
@@ -33,6 +34,7 @@
   --stat-color: #828FA3;
   --subtasks-btn: rgba(99, 95, 199, 0.1);
   --input-border: rgba(130, 143, 163, 0.25);
+  --tray-color: #ffffff;
 }
 
 .dark-mode {
@@ -47,9 +49,18 @@
   --stat-color: #ffffff;
   --subtasks-btn: #ffffff;
   --input-border: rgba(130, 143, 163, 0.25);
+  --tray-color: #20212C;
 }
 
 
-body {
-  transition: all .5s linear;
+
+
+
+@keyframes bodytrans {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

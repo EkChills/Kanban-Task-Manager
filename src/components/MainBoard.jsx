@@ -29,7 +29,6 @@ const MainBoard = () => {
    openViewTasksModal()
   }
 
-  
 
 
   return (
@@ -110,6 +109,7 @@ const Wrapper = styled.div`
   width: calc(100% - 19.15rem);
   margin-left: 19.15rem;
   background-color: var(--main-bcg);
+  transition: all .4s ease-in-out;
 }
 
 .board-full {
@@ -127,6 +127,15 @@ const Wrapper = styled.div`
 .task-board:hover {
   transform: translateY(5px);
 
+}
+
+@keyframes bodytrans {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 /* .task-board > h4 {

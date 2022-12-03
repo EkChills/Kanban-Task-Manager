@@ -71,7 +71,6 @@ const AddNewTaskModal = ({ isModalOpen, open, close }) => {
 
 
 
-  console.log(inputErrors);
 
   // useEffect(() => {
   //   handleErrorChange()
