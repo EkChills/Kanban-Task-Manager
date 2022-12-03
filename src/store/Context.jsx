@@ -19,7 +19,7 @@ const AppProvider = ({children}) => {
     title: '',
     description: '',
     subtasks: '',
-    status: ''
+    status: 'Todo'
   })
 
   const handleAddedTaskChange = (e) => {
