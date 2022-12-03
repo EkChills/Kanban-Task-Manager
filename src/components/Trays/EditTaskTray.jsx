@@ -1,16 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import ReactDOM  from 'react-dom'
 import styled from 'styled-components'
 import { TasksContext } from '../../store/Context'
+import EditTask from '../modals/EditTask'
 
-const EditTaskTray = () => {
-  const {showEditTaskTray, setShowEditTaskTray} = React.useContext(TasksContext)
+const EditTaskTray = ({found, findEditItem}) => {
+  const {showEditTaskTray, setShowEditTaskTray, AddedTasks, setAddedTasks, setShowEditTaskModal,setShowSelected } = React.useContext(TasksContext)
+
+  const foundItem = findEditItem()?.tasks
+  const foundEditedItem = foundItem?.find((item) => item.title === found)
+  const foundItemIndex = foundItem?.indexOf(foundEditedItem)
+  const portalElement = document.getElementById('portals')
+
+  // console.log(foundEditedItem);
+
+
+  
+  
+  
   
   return (
     <Wrapper>
       <div className={`flex flex-col space-y-5 main-cont ${showEditTaskTray ? 'show' : 'dont-show'} z-50 transition-all ease-in-out  show rounded-lg py-5 px-4 w-[7rem] md:w-[10rem]  md:pr-6`}>
-        <p className='text-grey text-[13px] cursor-pointer'>Edit Task</p>
+        <p className='text-grey text-[13px] cursor-pointer' onClick={() => {
+          findEditItem()
+          setShowSelected(false)
+          setShowEditTaskModal(true)
+        }} >Edit Task</p>
         <p className='text-deepRed text-[13px] cursor-pointer'>Delete task</p>
       </div>
+      {ReactDOM.createPortal(<EditTask foundItem={foundItem} foundEditedItem={foundEditedItem} foundItemIndex={foundItemIndex} />, portalElement)}
     </Wrapper>
 
   )

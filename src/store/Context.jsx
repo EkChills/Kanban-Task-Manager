@@ -14,6 +14,7 @@ const AppProvider = ({children}) => {
   const [isChecked, setIsChecked] = useState(false)
   const [showSelected, setShowSelected] = useState(false)
   const [showAddBoardModal, setShowAddBoardModal] = useState(false)
+  const [showEditTaskModal, setShowEditTaskModal] = useState(false)
   const [showAddNewTaskModal, setShowAddNewTaskModal] = useState(false)
   const [showEditTaskTray, setShowEditTaskTray] = useState(false)
   const [showEditBoardTray, setShowEditBoardTray] = useState(false)
@@ -60,6 +61,17 @@ const AppProvider = ({children}) => {
     setShowAddNewTaskModal(false)
   }
 
+  const openEditTaskModal = () => {
+    setShowEditTaskModal(true)
+  }
+
+  const closeEditTaskModal = () => {
+    setShowEditTaskModal(false)
+  }
+
+
+
+
   const toggleTheme = () => {
     if (isChecked) {
       setTheme('dark-mode')
@@ -95,7 +107,8 @@ const AppProvider = ({children}) => {
     handleCheck, showAddBoardModal, setShowAddBoardModal, openShowAddBoardModal, closeShowAddBoardModal,
     openAddNewTaskModal, closeAddNewTaskModal, showAddNewTaskModal, setShowAddNewTaskModal,
     AddedTasks, setAddedTasks, handleAddedTaskChange, showEditTaskTray, setShowEditTaskTray,
-    showEditBoardTray,setShowEditBoardTray}}>
+    showEditBoardTray,setShowEditBoardTray, showEditTaskModal, setShowEditTaskModal,
+    openEditTaskModal, closeEditTaskModal}}>
       {children}
     </TasksContext.Provider>
   )

@@ -39,6 +39,11 @@ const ViewTaskDetails = ({ info }) => {
     })
   }
 
+  const findEditItem = () => {
+    const found = columns.find((item) => item.name === info.status)
+    return found
+  }
+
 
 
 
@@ -55,7 +60,7 @@ const ViewTaskDetails = ({ info }) => {
           <div className='flex items-center space-x-8 justify-between relative'>
             <h2 className={`text-[18px] font-bold max-w-[387px] ${isChecked ? 'text-pureWhite' : 'text-darkBlack'}`}>{info.title}</h2>
             <img src={elipse} alt="elipse menu " className='cursor-pointer' onClick={openTaskTray} />
-            <EditTaskTray/>
+            <EditTaskTray found={info.title} findEditItem={findEditItem} />
           </div>
           <div>
             <p className={`text-[15px] max-w-[426px] text-grey`}>{info.description}</p>
@@ -77,7 +82,7 @@ const ViewTaskDetails = ({ info }) => {
             <label htmlFor="select" className='text-[13px] md:text-[15px] font-bold curr-stat '>Current Status</label>
             <select className={`select ${!isChecked ? 'select-secondary' : 'select-primary' } w-full`}>
               {columns.map((item, index) => {
-                return <option key={index} selected={info.status === item.name} className="" value={item.name}>{item.name}</option>
+                return <option key={index}  className="" value={item.name}>{item.name}</option>
               })}
             </select>
           </div>
