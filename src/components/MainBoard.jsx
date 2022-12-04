@@ -35,7 +35,7 @@ const MainBoard = () => {
     <Wrapper>
 
 
-      <div className={`${sidebarOpen ? 'board' : 'board board-full'} overflow-x-scroll px-6`}>
+      <div className={`${sidebarOpen ? 'board' : 'board board-full'} overflow-x-scroll px-6 pb-5`}>
         <div className='flex items-start space-x-0'>
           {/* for tasks column */}
           {columns.map((column, index) => {

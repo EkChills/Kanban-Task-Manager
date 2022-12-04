@@ -60,7 +60,7 @@ const ViewTaskDetails = ({ info }) => {
           <div className='flex items-center space-x-8 justify-between relative'>
             <h2 className={`text-[18px] font-bold max-w-[387px] ${isChecked ? 'text-pureWhite' : 'text-darkBlack'}`}>{info.title}</h2>
             <img src={elipse} alt="elipse menu " className='cursor-pointer' onClick={openTaskTray} />
-            <EditTaskTray found={info.title} findEditItem={findEditItem} />
+            <EditTaskTray found={info.title} info={info} findEditItem={findEditItem} />
           </div>
           <div>
             <p className={`text-[15px] max-w-[426px] text-grey`}>{info.description}</p>

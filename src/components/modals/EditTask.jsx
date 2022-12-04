@@ -8,7 +8,7 @@ import darkIcon from '../../assets/icon-dark-theme.svg'
 import { useState, useEffect } from 'react'
 
 
-const EditTask = ({ foundEditedItem, foundItemIndex, foundItem }) => {
+const EditTask = ({ foundEditedItem, foundItemIndex, colFound, foundItem }) => {
   const [inputErrors, setInputErrors] = useState({
     titleError: false,
     descriptionError: false,
@@ -20,16 +20,42 @@ const EditTask = ({ foundEditedItem, foundItemIndex, foundItem }) => {
   const boardTitle = allBoards.map(((item) => item.name))
   const { columns } = allBoards[tasksIndex]
 
-  const EditTask = () => {
-    columns.map((item, index) =>  {
-      if(item.name === AddedTasks.status) {
-        item.tasks[foundItemIndex] =   {
+  const EditTasks = () => {
+   console.log(colFound);
+
+   
+
+   colFound.tasks[foundItemIndex] = {
           "title": AddedTasks.title,
           "description": AddedTasks.description,
           "status": AddedTasks.status,
           "subtasks": AddedTasks.subtasks
         }
-        
+
+    // columns.map((item, index) =>  {
+    //   const foundd = item.tasks.find((item) => item.title === AddedTasks.title)
+    //   if(item.name === )
+    //     item.tasks[foundItemIndex] =   {
+    //       "title": AddedTasks.title,
+    //       "description": AddedTasks.description,
+    //       "status": AddedTasks.status,
+    //       "subtasks": AddedTasks.subtasks
+    //     }
+    //     return 
+    // })
+
+    columns.map((item, index) =>  {
+      if(item.name === AddedTasks.status) {
+        item.tasks.push(
+          {
+              "title": AddedTasks.title,
+              "description": AddedTasks.description,
+              "status": AddedTasks.status,
+              "subtasks": AddedTasks.subtasks
+            },
+        )
+
+        colFound.tasks.splice(foundItemIndex,1)
       }
     })
   }
@@ -86,16 +112,30 @@ const EditTask = ({ foundEditedItem, foundItemIndex, foundItem }) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (inputErrors.titleError || inputErrors.descriptionError || inputErrors.subtasksError) {
-      return
-    }
-    EditTask()
+    // if (inputErrors.titleError || inputErrors.descriptionError || inputErrors.subtasksError) {
+    //   return
+    // }
+    EditTasks()
     closeEditTaskModal()
     setAddedTasks({
       title: '',
       description: '',
       subtasks: '',
       status: 'Todo'
+    })
+  }
+
+  const removeSubtask = (ind) => {
+    setAddedTasks(prev => ({...prev, subtasks:prev.subtasks?.splice(ind, 1)}))
+    console.log(ind);
+  }
+
+  const AddSubtask = () => {
+    setAddedTasks(prev => {
+      return {...prev, subtasks:prev.subtasks?.push({
+        title: 'hell',
+        isCompleted:false
+      })}
     })
   }
 
@@ -115,18 +155,18 @@ const EditTask = ({ foundEditedItem, foundItemIndex, foundItem }) => {
           </div>
           <div className='flex flex-col space-y-2'>
             <label htmlFor="subtasks" className='curr-stat text-[12px] font-bold'>Subtasks</label>
-            {AddedTasks.subtasks && AddedTasks.subtasks?.map((item, index) => {
+            {AddedTasks.subtasks && AddedTasks.subtasks.map((item, index) => {
               return (
                 <div key={index} className={`flex items-center space-x-2 ${inputErrors.subtasksError && 'error-subtask'}`}>
                   <input id='subtasks' type="text" name="subtasks" onKeyUp={handleErrorChange} onBlur={handleErrorChange} onChange={handleAddedTaskChange} value={item.title} placeholder="e.g Take cofee break" className={`input placeholder:text-grey placeholder:font-semibold bg-inherit ${inputErrors.subtasksError ? 'error-border' : 'border-input'} text-[13px]  w-full`} />
-                  <svg className='remove' width="15" height="15" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z" /><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z" /></g></svg>
+                  <svg onClick={() => removeSubtask(index)} className='remove' width="15" height="15" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z" /><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z" /></g></svg>
                 </div>
               )
             })
             }
             <button type='button' className="btn rounded-full subtask-btn flex items-center space-x-2">
               <svg className='svg-add' width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path fill="#635FC7" d="M7.368 12V7.344H12V4.632H7.368V0H4.656v4.632H0v2.712h4.656V12z" /></svg>
-              <span className='text-darkPurple text-[13px] font-bold'>Add New Subtask</span>
+              <span className='text-darkPurple text-[13px] font-bold' onClick={AddSubtask}>Add New Subtask</span>
             </button>
           </div>
           <div className='flex flex-col space-y-2'>

@@ -4,15 +4,21 @@ import styled from 'styled-components'
 import { TasksContext } from '../../store/Context'
 import EditTask from '../modals/EditTask'
 
-const EditTaskTray = ({found, findEditItem}) => {
-  const {showEditTaskTray, setShowEditTaskTray, AddedTasks, setAddedTasks, setShowEditTaskModal,setShowSelected } = React.useContext(TasksContext)
+const EditTaskTray = ({found, findEditItem, info}) => {
+  const {showEditTaskTray, allBoards, tasksIndex,setShowEditTaskTray, AddedTasks, setAddedTasks, setShowEditTaskModal,setShowSelected } = React.useContext(TasksContext)
 
   const foundItem = findEditItem()?.tasks
   const foundEditedItem = foundItem?.find((item) => item.title === found)
   const foundItemIndex = foundItem?.indexOf(foundEditedItem)
   const portalElement = document.getElementById('portals')
 
-  // console.log(foundEditedItem);
+  const {columns} = allBoards[tasksIndex]
+
+  const colFound =  columns.find((item) => item.name === info.status)
+
+
+  // // console.log(foundEditedItem);
+  // console.log(colFound);
 
 
   
@@ -29,7 +35,7 @@ const EditTaskTray = ({found, findEditItem}) => {
         }} >Edit Task</p>
         <p className='text-deepRed text-[13px] cursor-pointer'>Delete task</p>
       </div>
-      {ReactDOM.createPortal(<EditTask foundItem={foundItem} foundEditedItem={foundEditedItem} foundItemIndex={foundItemIndex} />, portalElement)}
+      {ReactDOM.createPortal(<EditTask foundItem={foundItem} colFound={colFound} foundEditedItem={foundEditedItem} foundItemIndex={foundItemIndex} />, portalElement)}
     </Wrapper>
 
   )
